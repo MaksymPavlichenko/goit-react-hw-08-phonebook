@@ -1,46 +1,47 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import styles from './Form.module.css';
 
-export class Form extends Component {
-    static propTypes = {
-        addUserData: PropTypes.func.isRequired,
+export default function Form({ addUserData }) {
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+
+
+    const userChange = e => {
+        const { name, value } = e.target;
+        switch (name) {
+          case 'name':
+            setName(value);
+            break;
+          case 'number':
+            setNumber(value);
+            break;
+          default:
+            return;
+        }
     };
 
-    state = {
-        name: '',
-        number: '',
-    };
-
-    userChange = ({ target: { name, value } }) => {
-        this.setState({ [name]: value });
-    };
-
-    userSubmit = e => {
+    const userSubmit = e => {
         e.preventDefault();
         const id = nanoid();
-        const user = { ...this.state, id };
-        this.props.addUserData(user);
-        this.reset();
+        const user = { name, number, id };
+        addUserData(user);
+        setName('');
+        setNumber('');
     };
 
-    reset = () => {
-        this.setState({ name: '', number: '' });
-    };
-    
-    render() {
-        return (
+      return (
         <>
-          <form className={styles.form} onSubmit={this.userSubmit}>
+          <form className={styles.form} onSubmit={userSubmit}>
             <label className={styles.label}>
               Name
               <input
                 className={styles.input}
                 type="text"
                 name="name"
-                value={this.state.name}
-                onChange={this.userChange}
+                value={name}
+                onChange={userChange}
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
@@ -52,8 +53,8 @@ export class Form extends Component {
                 className={styles.input}
                 type="tel"
                 name="number"
-                value={this.state.number}
-                onChange={this.userChange}
+                value={number}
+                onChange={userChange}
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
@@ -64,6 +65,9 @@ export class Form extends Component {
             </button>
           </form>
         </>
-        );
-    };
+      );
+};
+
+Form.propTypes = {
+  addUserData: PropTypes.func.isRequired,
 };
