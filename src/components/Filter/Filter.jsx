@@ -17,6 +17,7 @@ export const Filter = () => {
           className={styles.input}
           type="text"
           name="name"
+          value={name}
           onChange={userFilter}
         />
       </label>
