@@ -1,13 +1,14 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import styles from './Form.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../Redux/Contacts/contacts';
 
 export default function Form({ addUserData }) {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
-
-
+    const contacts = useSelector(state => state.contacts.contacts);
+    const dispatch = useDispatch();
     const userChange = e => {
         const { name, value } = e.target;
         switch (name) {
@@ -24,12 +25,19 @@ export default function Form({ addUserData }) {
 
     const userSubmit = e => {
         e.preventDefault();
+        const contactFilter = contacts?.some(
+          option => option.name.toLowerCase() === name.toLowerCase()
+        );
+        if (contactFilter) {
+          alert(`${name} is already in contacts.`);
+          return;
+        }
         const id = nanoid();
         const user = { name, number, id };
-        addUserData(user);
+        dispatch(addContact(user));
         setName('');
         setNumber('');
-    };
+      };
 
       return (
         <>
@@ -66,8 +74,4 @@ export default function Form({ addUserData }) {
           </form>
         </>
       );
-};
-
-Form.propTypes = {
-  addUserData: PropTypes.func.isRequired,
 };
