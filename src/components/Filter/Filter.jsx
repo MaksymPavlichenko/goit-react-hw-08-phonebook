@@ -1,12 +1,12 @@
 import styles from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContact } from '../../Redux/Contacts/contacts';
+import { filterContacts } from '../../Redux/Contacts/contacts-actions';
 
 export const Filter = () => {
   const name = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
   const userFilter = e => {
-    dispatch(filterContact(e.target.value));
+    dispatch(filterContacts(e.target.value));
   };
 
   return (
