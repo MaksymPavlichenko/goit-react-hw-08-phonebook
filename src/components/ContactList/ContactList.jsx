@@ -26,11 +26,11 @@ export const ContactList = () => {
 
     return (
         <ul className={styles.list}>
-          {getContactList()?.map(({ id, name, phone }) => (
+          {getContactList()?.map(({ id, name, number }) => (
             <ContactListItem
               key={id}
               name={name}
-              number={phone}
+              number={number}
               onDelete={handlerDelete}
               id={id}
             />

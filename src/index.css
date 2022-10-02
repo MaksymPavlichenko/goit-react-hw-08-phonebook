@@ -34,6 +34,14 @@ p {
   --second-color: #0082D1;
 }
 
+h2,
+h3 {
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .container {
   background: var(--second-color);
   max-width: 400px;
