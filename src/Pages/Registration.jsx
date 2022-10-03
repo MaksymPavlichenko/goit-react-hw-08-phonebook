@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 export const Registration = () => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,9 +16,6 @@ export const Registration = () => {
   const handleChange = evt => {
     const { name, value } = evt.target;
     switch (name) {
-      case 'name':
-        setName(value);
-        break;
       case 'email':
         setEmail(value);
         break;
@@ -34,10 +30,9 @@ export const Registration = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    const user = { name, email, password };
+    const user = { email, password };
 
     dispatch(signIn(user));
-    setName('');
     setEmail('');
     setPassword('');
   };
@@ -50,17 +45,6 @@ export const Registration = () => {
         <>
           <h2>Registration</h2>
           <form className={styles.form} onSubmit={handleSubmit}>
-            <label className={styles.label}>
-              Name
-              <input
-                className={styles.input}
-                name="name"
-                value={name}
-                onChange={handleChange}
-                placeholder="Enter your Name"
-                type="text"
-              />
-            </label>
             <label className={styles.label}>
               Email
               <input

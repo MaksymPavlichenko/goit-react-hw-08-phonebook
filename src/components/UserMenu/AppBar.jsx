@@ -9,7 +9,6 @@ export const AppBar = () => {
     <>
       <header>
         {isLogin ? <UserMenu /> : <AuthNav />}
-        {}
       </header>
     </>
   );
