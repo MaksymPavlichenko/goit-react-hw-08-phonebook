@@ -58,7 +58,7 @@ export const Registration = () => {
                 value={name}
                 onChange={handleChange}
                 placeholder="Enter your Name"
-                type="name"
+                type="text"
               />
             </label>
             <label className={styles.label}>

@@ -19,11 +19,13 @@ const authSlice = createSlice({
       state.token = payload.token;
       state.user = payload.user;
       state.isLogin = true;
+      state.isRefreshed = true;
     },
     [logIn.fulfilled]: (state, { payload }) => {
       state.token = payload.token;
       state.user = payload.user;
       state.isLogin = true;
+      state.isRefreshed = true;
     },
     [logOut.fulfilled]: (state, { payload }) => {
       state.token = '';
@@ -33,6 +35,7 @@ const authSlice = createSlice({
     [getRefresh.fulfilled]: (state, { payload }) => {
       state.user = payload;
       state.isLogin = true;
+      state.isRefreshed = false;
     },
     [getRefresh.rejected]: (state, { payload }) => {
       state.token = '';

@@ -8,15 +8,13 @@ export const NotFound = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const test = setTimeout(() => {
+    const test = (() => {
       if (isLogin) {
         navigate('/contacts');
-        return;
       } else {
         navigate('/login');
-        return;
       }
-    }, 3000);
+    });
     console.log(test);
   }, [isLogin, navigate]);
 
