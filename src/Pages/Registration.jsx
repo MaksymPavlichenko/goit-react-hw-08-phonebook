@@ -10,20 +10,16 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 export const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
 
   const handleChange = evt => {
     const { name, value } = evt.target;
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
         setPassword(value);
-        break;
-      default:
-        return;
+    } else {
+      throw new Error('Unexpected value');
     }
   };
 
@@ -35,6 +31,7 @@ export const Registration = () => {
     dispatch(signIn(user));
     setEmail('');
     setPassword('');
+    evt.target.reset();
   };
 
   const isLogin = useSelector(getisLogin);

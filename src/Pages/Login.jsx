@@ -15,20 +15,18 @@ export const LogIn = () => {
 
   const handleChange = evt => {
     const { name, value } = evt.target;
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        return;
+    if (name === 'email') {
+      setEmail(value);
+    } else {
+      setPassword(value);
     }
   };
 
   const handleSubmit = async evt => {
     evt.preventDefault();
+    if (!email || !password) {
+      return;
+    }
 
     const user = { email, password };
     try {

@@ -10,13 +10,15 @@ export const Contacts = () => {
 
   return (
     <>
+    {isLogin ? (
       <div className={styles.container}>
         <h2>Add new contact</h2>
         <Form></Form>
         <Filter></Filter>
         <h3 className={styles.text}>Contacts</h3>
-        {isLogin && <ContactList></ContactList>}
+         <ContactList></ContactList>
       </div>
+  ) : (<h2>Please Login</h2>)}
     </>
   );
 };
