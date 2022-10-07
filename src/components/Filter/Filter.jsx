@@ -1,13 +1,11 @@
 import styles from '../Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContacts } from '../../Redux/Contacts/contacts-actions';
+import { setFilter } from '../../Redux/Contacts/filterSlice';
+import { selectGetFilterValue } from 'Redux/Contacts/contacts-selectors'
 
-export const Filter = () => {
-  const name = useSelector(state => state.contacts.filter);
+export function Filter() {
+  const filter = useSelector(selectGetFilterValue);
   const dispatch = useDispatch();
-  const userFilter = e => {
-    dispatch(filterContacts(e.target.value));
-  };
 
   return (
     <form className={styles.form}>
@@ -16,9 +14,9 @@ export const Filter = () => {
         <input
           className={styles.input}
           type="text"
-          name="name"
-          value={name}
-          onChange={userFilter}
+          name="filter"
+          value={filter.value}
+          onChange={e => dispatch(setFilter(e.target.value.toLowerCase()))}
         />
       </label>
     </form>

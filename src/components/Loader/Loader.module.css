@@ -1,0 +1,11 @@
+.loader {
+    position: fixed;
+    top: calc(50% - 100px);
+    right: calc(50% - 200px);
+    border-radius: 50px;
+}
+
+.loader svg{
+    width: 400px;
+    height: 200px;
+}

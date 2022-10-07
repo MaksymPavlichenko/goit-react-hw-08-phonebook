@@ -1,63 +1,31 @@
-.span {
-    margin-right: 20px;
-}
-  
-.container {
+.userMenu {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
     align-items: center;
-    margin-right: 20px;
+    gap: 20px;
 }
   
-.user_container {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 20px;
+.userEmail {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--main-color);
 }
-
-.activeLink {
-  font-family: inherit;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: var(--main-color);
-  line-height: 1.62;
-  border: transparent;
-  padding: 6px 22px;
-  background-color: var(--second-color);
-  border-radius: 5px;
-  color: var(--main-color);
-}
-
+  
 .link {
-  font-family: inherit;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: var(--third-color);
-  line-height: 1.62;
-  border: transparent;
-  padding: 6px 22px;
-  transition: box-shadow var(--animation), color var(--animation),
-    background-color var(--animation);
-  border-radius: 5px;
-  color: var(--main-color);
-  border: 1px solid var(--main-color);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 15px 10px 15px;
+    color: var(--second-color);
+    border: 0;
+    border-radius: 8px;
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
 }
 
 .link:hover,
 .link:focus {
-  color: var(--second-color);
-  background-color: var(--main-color);
-}
-
-.header {
-  background-color: var(--second-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  padding: 20px;
-
-  border-bottom: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--second-color);
 }

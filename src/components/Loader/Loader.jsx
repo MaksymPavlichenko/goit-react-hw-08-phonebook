@@ -1,21 +1,17 @@
-import { Triangle } from "react-loader-spinner";
+import { InfinitySpin } from "react-loader-spinner";
+import { useSelector } from 'react-redux';
+import { selectAuthIsLoading, selectItemsIsLoading } from 'Redux/Contacts/contacts-selectors';
+import styles from './Loader.module.css';
 
-const Loader = () => {
+export function Loader() {
+  const authIsLoading = useSelector(selectAuthIsLoading);
+  const itemsIsLoading = useSelector(selectItemsIsLoading);
+
+  if (authIsLoading || itemsIsLoading) {
     return (
-      <Triangle
-        height="40"
-        width="40"
-        radius="9"
-        color="#e9967a"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{
-          dispay: 'flex',
-          justifyContent: 'center',
-          padding: 20,
-        }}
-        wrapperClass
-      />
+      <div className={styles.loader}>
+        <InfinitySpin width="200" color="#4fa94d" />
+      </div>
     );
-  };
-  
-  export { Loader };
+  }
+}

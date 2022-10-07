@@ -1,54 +1,38 @@
-import { Route, Routes } from 'react-router-dom';
-import { LogIn } from 'Pages/Login';
-import { Registration } from '../Pages/Registration';
-import { AppBar } from './UserMenu/AppBar';
-import { useSelector } from 'react-redux';
-import { Contacts } from '../Pages/Contacts';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
-import PublicRoute from './PublicRoute/PublicRoute';
-import { getisRefreshed } from 'Redux/Auth/AuthSelectors';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import { getUser } from 'Redux/Contacts/contacts-operations';
+import { AppBar } from './AppBar/AppBar';
+import { Contacts } from './Contacts/Contacts';
 import { Loader } from './Loader/Loader';
-import { NotFound } from 'Pages/NotFound';
+import { Login } from './Login/Login';
+import { Register } from './Register/Register';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styles from './App.module.css';
 
-export const App = () => {
-  const isRefreshed = useSelector(getisRefreshed);
+function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   return (
-    <>
-      {isRefreshed ? (
-        <Loader />
-      ) : (
-        <>
-          <AppBar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute>
-                  <Registration />
-                </PublicRoute>
-              }
-            ></Route>
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <LogIn />
-                </PublicRoute>
-              }
-            ></Route>
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute>
-                  <Contacts />
-                </PrivateRoute>
-              }
-            ></Route>
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
-        </>
-      )}
-    </>
+    <div className={styles.body}>
+      <AppBar />
+      <div className={styles.wrapper}>
+        <Routes>
+          <Route path="/" element={<p className={styles.title}>Welcome to Phonebook!</p>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Routes>
+      </div>
+      <ToastContainer />
+      <Loader />
+    </div>
   );
-};
+}
+
+export default App;
