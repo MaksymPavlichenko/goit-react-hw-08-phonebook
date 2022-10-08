@@ -3,6 +3,6 @@
     font-weight: 500;
     position: absolute;
     color: var(--second-color);
-    left: calc(50% - 350px);
+    margin-left: 20%;
     top: 50%;
 }

@@ -10,6 +10,7 @@ import { Register } from './Register/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './App.module.css';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ function App() {
           <Route path="/" element={<p className={styles.title}>Welcome to Phonebook!</p>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/contacts" element={<PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>} />
         </Routes>
       </div>
       <ToastContainer />

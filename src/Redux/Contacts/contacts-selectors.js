@@ -9,3 +9,5 @@ export const selectItemsIsLoading = state => state.items.isLoading
 export const selectGetItemsContacts = state => state.items.contacts
 
 export const selectGetFilterValue = state => state.filter
+
+export const getToken = state => state.auth.token;

@@ -10,6 +10,12 @@
     font-weight: 500;
     color: var(--main-color);
 }
+
+@media screen and (max-width: 767px) {
+    .userEmail {
+    display: none;
+    }
+}
   
 .link {
     text-decoration: none;
